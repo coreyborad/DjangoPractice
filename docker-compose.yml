@@ -1,0 +1,21 @@
+version: '3'
+
+networks:
+  test-subnet:
+
+services:
+  django:
+    container_name: django
+    build: 
+      context: ./
+      dockerfile: Dockerfile_django
+    image: django:v1
+    restart: always
+    environment:
+      TZ: "Asia/Taipei"
+    networks:
+      - test-subnet
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/usr/src/app
